@@ -3,10 +3,7 @@
  * Mostly copied from http://docs.cloudfoundry.com/services/rabbitmq/nodejs-rabbitmq.html
  */
 
-var http = require('http');
 var amqp = require('amqp');
-var URL = require('url');
-var htmlEscape = require('sanitizer/sanitizer').escape;
 var fs = require('fs');
 var lazy = require('lazy');
 
@@ -21,10 +18,6 @@ function rabbitUrl() {
 		return "amqp://localhost";
 	}
 }
-
-var port = process.env.VCAP_APP_PORT || 3000;
-
-var messages = [];
 
 function setup() {
 
