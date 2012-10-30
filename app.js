@@ -49,7 +49,12 @@ function setup() {
 
 function readFileAndPush(exchange) {
 	// read every line of the file
-	new lazy(fs.createReadStream('../clicks/redir-2012-10-22-15-00-click-redir-16-0c0e100b-48a3-49a6-bd29-f1dc57a65f1d.log'))
+	//new lazy(fs.createReadStream('../clicks/redir-2012-10-22-15-59-click-redir-22-java-a225e958-bad8-4e50-b7e6-5f6d84138e9d.log'))
+	var filename = '../clicks/fake-clicks-2.tsv';
+	if (process.argv[2]) {
+		filename = process.argv[2];
+	}
+	new lazy(fs.createReadStream(filename))
 	.lines
 	.forEach(function(line){
 		console.log("Reading line from file")
@@ -66,16 +71,16 @@ function readFileAndPush(exchange) {
 			'snowball_id': fields[8],
 			'campaign_id': fields[9],
 			'parent_id': fields[10],
-			'domain_id': fields[12],
-			'original_url_id': fields[13],
-			'redirection_id': fields[14],
-			'project_id': fields[15],
-			'channel': fields[16],
-			'tool': fields[17],
-			'sharer_id': fields[18],
-			'bot_flag': fields[19],
-			'user_id': fields[20],
-			'notes': fields[21]
+			'domain_id': fields[11],
+			'original_url_id': fields[12],
+			'redirection_id': fields[13],
+			'project_id': fields[14],
+			'channel': fields[15],
+			'tool': fields[16],
+			'sharer_id': fields[17],
+			'bot_flag': fields[18],
+			'user_id': fields[19],
+			'notes': fields[20]
 		}
 		console.log("Pushing to queue")
 		exchange.publish('', {
